@@ -1,0 +1,19 @@
+{
+    "name": "Frieza",
+    "description": "The tyrant emperor of the universe and one of the most feared villains in Dragon Ball.",
+    "image": "ipfs://bafkreibu5tvmq7isi4bd55bzuyuhg4al3ayoivnfl7k3t44cb2pg24oagm",
+    "attributes": [
+        {
+            "trait_type": "Race",
+            "value": "Frieza Force"
+        },
+        {
+            "trait_type": "Affiliation",
+            "value": "Frieza Force"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Villain"
+        }
+    ]
+}

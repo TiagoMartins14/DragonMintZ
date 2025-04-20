@@ -1,0 +1,19 @@
+{
+    "name": "Yamcha",
+    "description": "A skilled fighter and former desert bandit who became an ally of the Z Fighters.",
+    "image": "ipfs://bafkreigumzpa3gj3asjnhk55xzkvbjaiureyrbxqqqhzfvh5cp4kndsgfe",
+    "attributes": [
+        {
+            "trait_type": "Race",
+            "value": "Human"
+        },
+        {
+            "trait_type": "Affiliation",
+            "value": "Z Fighters"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Z Fighter"
+        }
+    ]
+}

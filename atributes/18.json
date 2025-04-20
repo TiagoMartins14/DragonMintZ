@@ -1,0 +1,19 @@
+{
+    "name": "3 Star Ball",
+    "description": "The third of the seven Dragon Balls, capable of summoning Shenron.",
+    "image": "ipfs://bafkreihjmwgzfzprgqncxzovgtrgtlwsowtdsrh2zmtpncop75ib4ejwdy",
+    "attributes": [
+        {
+            "trait_type": "Type",
+            "value": "Dragon Ball"
+        },
+        {
+            "trait_type": "Star",
+            "value": "3"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Wish Granter"
+        }
+    ]
+}

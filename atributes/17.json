@@ -1,0 +1,19 @@
+{
+    "name": "2 Star Ball",
+    "description": "The second of the seven Dragon Balls, capable of summoning Shenron.",
+    "image": "ipfs://bafkreibtpa4aeo2htc5ydt6zxiz43eb2wyztr2usll5ltoe3tlasalnoeq",
+    "attributes": [
+        {
+            "trait_type": "Type",
+            "value": "Dragon Ball"
+        },
+        {
+            "trait_type": "Star",
+            "value": "2"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Wish Granter"
+        }
+    ]
+}

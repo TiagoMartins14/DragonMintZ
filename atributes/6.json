@@ -1,0 +1,19 @@
+{
+    "name": "Master Roshi",
+    "description": "The wise and eccentric martial arts master, also known as the Turtle Hermit.",
+    "image": "ipfs://bafkreibnlxqhc7f4sceapp74d5gqohq4ieoacqgthrk3l466q6wkpkft7e",
+    "attributes": [
+        {
+            "trait_type": "Race",
+            "value": "Human"
+        },
+        {
+            "trait_type": "Affiliation",
+            "value": "Z Fighters"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Mentor"
+        }
+    ]
+}

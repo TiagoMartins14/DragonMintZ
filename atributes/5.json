@@ -1,0 +1,19 @@
+{
+    "name": "Piccolo",
+    "description": "A Namekian warrior who became one of Goku's most trusted allies.",
+    "image": "ipfs://bafkreia2abcqq7q4c3bmld43yqfdftipzyh2j2tbkconl7l3vcyxote7iu",
+    "attributes": [
+        {
+            "trait_type": "Race",
+            "value": "Namekian"
+        },
+        {
+            "trait_type": "Affiliation",
+            "value": "Z Fighters"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Z Fighter"
+        }
+    ]
+}

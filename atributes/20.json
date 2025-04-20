@@ -1,0 +1,19 @@
+{
+    "name": "5 Star Ball",
+    "description": "The fifth of the seven Dragon Balls, capable of summoning Shenron.",
+    "image": "ipfs://bafkreiht5wly65nxw4nzf6ct7fnase4ujxp7bqktk7x2lu5xvtybrpcih4",
+    "attributes": [
+        {
+            "trait_type": "Type",
+            "value": "Dragon Ball"
+        },
+        {
+            "trait_type": "Star",
+            "value": "5"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Wish Granter"
+        }
+    ]
+}

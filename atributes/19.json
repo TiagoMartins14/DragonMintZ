@@ -1,0 +1,19 @@
+{
+    "name": "4 Star Ball",
+    "description": "The fourth of the seven Dragon Balls, capable of summoning Shenron.",
+    "image": "ipfs://bafkreiefyvj5pwaovlwqhspk6ud3w54hwgawtzbcexuw2xq2ddz4fzzvjq",
+    "attributes": [
+        {
+            "trait_type": "Type",
+            "value": "Dragon Ball"
+        },
+        {
+            "trait_type": "Star",
+            "value": "4"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Wish Granter"
+        }
+    ]
+}

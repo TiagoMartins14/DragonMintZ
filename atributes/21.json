@@ -1,0 +1,19 @@
+{
+    "name": "6 Star Ball",
+    "description": "The sixth of the seven Dragon Balls, capable of summoning Shenron.",
+    "image": "ipfs://bafybeiagq57lex3777tnhusgwqnjw2qqpyeunduxnckl7lcgzxdjmct7de",
+    "attributes": [
+        {
+            "trait_type": "Type",
+            "value": "Dragon Ball"
+        },
+        {
+            "trait_type": "Star",
+            "value": "6"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Wish Granter"
+        }
+    ]
+}
