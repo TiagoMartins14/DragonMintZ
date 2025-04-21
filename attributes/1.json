@@ -1,0 +1,23 @@
+{
+    "name": "Son Goku",
+    "description": "Goku, the legendary Saiyan warrior who protects Earth.",
+    "image": "https://ipfs.io/ipfs/bafybeihrhczjcvv4kycqyta4k7i7zsebtr26qtrwuf6xchyajvdrj7mdba/Son%20Goku.webp",
+    "attributes": [
+        {
+            "trait_type": "Race",
+            "value": "Saiyan"
+        },
+        {
+            "trait_type": "Affiliation",
+            "value": "Z Fighters"
+        },
+        {
+            "trait_type": "Power Level",
+            "value": "Over 9000"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Main Protagonist"
+        }
+    ]
+}

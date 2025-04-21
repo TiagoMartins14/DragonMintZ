@@ -1,0 +1,19 @@
+{
+    "name": "Gohan",
+    "description": "The eldest son of Goku, known for his great potential and kindness.",
+    "image": "https://ipfs.io/ipfs/bafybeihrhczjcvv4kycqyta4k7i7zsebtr26qtrwuf6xchyajvdrj7mdba/Gohan.webp",
+    "attributes": [
+        {
+            "trait_type": "Race",
+            "value": "Human/Saiyan"
+        },
+        {
+            "trait_type": "Affiliation",
+            "value": "Z Fighters"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Z Fighter"
+        }
+    ]
+}

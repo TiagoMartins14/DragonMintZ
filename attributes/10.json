@@ -1,0 +1,19 @@
+{
+    "name": "Cell",
+    "description": "A bio-engineered android and one of the most powerful and dangerous villains.",
+    "image": "https://ipfs.io/ipfs/bafybeihrhczjcvv4kycqyta4k7i7zsebtr26qtrwuf6xchyajvdrj7mdba/Cell.png",
+    "attributes": [
+        {
+            "trait_type": "Race",
+            "value": "Android"
+        },
+        {
+            "trait_type": "Affiliation",
+            "value": "None"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Villain"
+        }
+    ]
+}
