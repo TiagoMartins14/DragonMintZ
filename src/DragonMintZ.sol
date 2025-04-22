@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
+import {ERC1155} from "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 import {console} from "forge-std/Script.sol";
 
 contract DragonMintZ is ERC1155 {
@@ -21,16 +21,19 @@ contract DragonMintZ is ERC1155 {
 
     /// @notice Mint a random DBZ character NFT to the caller
     function mintRandomCharacter() public {
-        uint256 characterId = getRandomCharacterId();
+        uint256 characterId = 15;
+        while (characterId == 15) {
+            characterId = getRandomCharacterId();
+        }
         _mint(msg.sender, characterId, 1, "");
         string memory characterURI = uri(characterId);
         emit CharacterMinted(msg.sender, characterId, characterURI);
     }
 
     /// @notice Helper function to get a random character
-    function getRandomCharacterId() internal view returns (uint256) {
+    function getRandomCharacterId() public view returns (uint256) {
         return
-            uint256(
+            (uint256(
                 keccak256(
                     abi.encodePacked(
                         block.timestamp,
@@ -38,15 +41,20 @@ contract DragonMintZ is ERC1155 {
                         block.prevrandao
                     )
                 )
-            ) % TOTAL_CHARACTERS;
+            ) % TOTAL_CHARACTERS) + 1;
     }
 
     /// @notice Returns full URI for token metadata
     function uri(uint256 tokenId) public view override returns (string memory) {
-        require(tokenId < TOTAL_CHARACTERS, "Invalid character ID");
+        require(tokenId <= TOTAL_CHARACTERS, "Invalid character ID");
+        require(tokenId > 0, "Invalid character ID");
         return
             string(
                 abi.encodePacked(baseURI, Strings.toString(tokenId), ".json")
             );
+    }
+
+    function getBalanceOfToken(uint256 tokenId) public view returns (uint256) {
+        return balanceOf(msg.sender, tokenId);
     }
 }
