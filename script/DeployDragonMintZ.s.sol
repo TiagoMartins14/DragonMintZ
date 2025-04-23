@@ -6,10 +6,8 @@ import {DragonMintZ} from "../src/DragonMintZ.sol";
 
 contract DeployDragonMintZ is Script {
     function run() external returns (DragonMintZ) {
-        string memory baseURI = vm.envString("BASE_URI");
-
         vm.startBroadcast();
-        DragonMintZ dragonMintZ = new DragonMintZ(baseURI);
+        DragonMintZ dragonMintZ = new DragonMintZ();
         console.log("Created a new DragonMintZ contract!");
         console.logAddress(address(dragonMintZ));
         vm.stopBroadcast();
