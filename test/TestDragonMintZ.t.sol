@@ -6,6 +6,7 @@ import {ERC1155} from "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import {DragonMintZ} from "../src/DragonMintZ.sol";
 import {DeployDragonMintZ} from "../script/DeployDragonMintZ.s.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
+import {TestableDragonMintZ} from "./TestableDragonMintZ.sol";
 
 contract DeployDragonMintZTest is Test {
     DeployDragonMintZ deployScript;
@@ -21,11 +22,13 @@ contract DeployDragonMintZTest is Test {
     }
 }
 
-contract DragonMintZTest is Test {
-    DragonMintZ dragonMintZ;
+contract DragonMintZTest is Test, ERC1155 {
+    TestableDragonMintZ public dragonMintZ;
 
-    function setUp() external {
-        dragonMintZ = new DragonMintZ("https://example.com/metadata/");
+    constructor() ERC1155("https://example.com/metadata/") {}
+
+    function setUp() public {
+        dragonMintZ = new TestableDragonMintZ();
     }
 
     function testMintRandomCharacter() public {
@@ -75,29 +78,62 @@ contract DragonMintZTest is Test {
         }
     }
 
-    function testUri() public {
+    function testGetCharacterUri() public {
         uint256 totalCharacters = dragonMintZ.TOTAL_CHARACTERS();
 
         for (uint256 i = 1; i <= totalCharacters; i++) {
             string memory expectedUri = string(
                 abi.encodePacked(
-                    "https://example.com/metadata/",
+                    "https://ipfs.io/ipfs/bafybeidemxyt6qodhhpimsx7jjne2cilnpdu5zieed3ntnhhwspk3arid4/",
                     Strings.toString(i),
                     ".json"
                 )
             );
 
             assertEq(
-                dragonMintZ.uri(i),
+                dragonMintZ.getCharacterUri(i),
                 expectedUri,
                 "The uri isn't matching with its expectation!"
             );
         }
 
         vm.expectRevert();
-        dragonMintZ.uri(0);
+        dragonMintZ.getCharacterUri(0);
 
         vm.expectRevert();
-        dragonMintZ.uri(totalCharacters + 1);
+        dragonMintZ.getCharacterUri(totalCharacters + 1);
+    }
+
+    function testHasAllDragonBalls() public {
+        uint256 oneStarBall = 16;
+        uint256 sevenStarBall = 22;
+        uint256 shenron = 15;
+
+        vm.startPrank(msg.sender);
+        for (uint256 i = oneStarBall; i <= sevenStarBall; i++) {
+            assertFalse(dragonMintZ.hasAllDragonBalls());
+            dragonMintZ.mintForTest(msg.sender, i, 1);
+        }
+        assertTrue(dragonMintZ.hasAllDragonBalls());
+
+        dragonMintZ.mintForTest(msg.sender, shenron, 1);
+        assertFalse(dragonMintZ.hasAllDragonBalls());
+        vm.stopPrank();
+    }
+
+    function testUnleashShenron() public {
+        uint256 oneStarBall = 16;
+        uint256 sevenStarBall = 22;
+        uint256 shenronId = 15;
+
+        vm.startPrank(msg.sender);
+        for (uint256 i = oneStarBall; i <= sevenStarBall; i++) {
+            dragonMintZ.mintForTest(msg.sender, i, 1);
+        }
+
+        assertTrue(dragonMintZ.balanceOf(msg.sender, shenronId) == 0);
+        dragonMintZ.unleashShenron();
+        assertTrue(dragonMintZ.balanceOf(msg.sender, shenronId) == 1);
+        vm.stopPrank();
     }
 }
