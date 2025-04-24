@@ -4,7 +4,7 @@ let contract;
 let signer;
 let isMinting = false;
 
-const CONTRACT_ADDRESS = "0xBB8480F36E688baA30833C49d092ecF6BebF1375";
+const CONTRACT_ADDRESS = "0xa3dd5F6ebc96b353B6Fc390f459b81b5C3CeCb18";
 const ABI_PATH = "./DragonMintZ.json";
 
 function convertIpfsToHttp(ipfsUrl) {
