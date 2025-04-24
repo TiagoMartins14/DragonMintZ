@@ -12,8 +12,6 @@
 DragonMintZ is a Web3 application built for fans of the Dragon Ball Z universe. The app lets users mint NFT representations of legendary DBZ characters and the iconic 7 Dragon Balls using a random minting mechanism powered by the Ethereum Virtual Machine (EVM). But there’s a twist — collecting all Dragon Balls gives the user a one-time opportunity to summon Shenron.
 
 The project utilizes:
-- **React** for the frontend UI
-- **Wagmi** + **RainbowKit** for EVM wallet connection
 - **Foundry** for contract development
 - **ERC1155** for flexible token standard
 - **IPFS (via Pinata)** to host character metadata and images
