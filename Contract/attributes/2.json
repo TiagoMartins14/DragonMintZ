@@ -1,0 +1,23 @@
+{
+    "name": "Vegeta",
+    "description": "Vegeta, the proud Saiyan prince, who initially was Goku's rival but later became an ally.",
+    "image": "https://ipfs.io/ipfs/bafybeihrhczjcvv4kycqyta4k7i7zsebtr26qtrwuf6xchyajvdrj7mdba/Vegeta.webp",
+    "attributes": [
+        {
+            "trait_type": "Race",
+            "value": "Saiyan"
+        },
+        {
+            "trait_type": "Affiliation",
+            "value": "Z Fighters"
+        },
+        {
+            "trait_type": "Power Level",
+            "value": "Over 20,000"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Z Fighter"
+        }
+    ]
+}

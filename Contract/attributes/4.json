@@ -1,0 +1,19 @@
+{
+    "name": "Krillin",
+    "description": "One of Goku's best friends and a brave fighter despite his small stature.",
+    "image": "https://ipfs.io/ipfs/bafybeihrhczjcvv4kycqyta4k7i7zsebtr26qtrwuf6xchyajvdrj7mdba/Krillin.webp",
+    "attributes": [
+        {
+            "trait_type": "Race",
+            "value": "Human"
+        },
+        {
+            "trait_type": "Affiliation",
+            "value": "Z Fighters"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Z Fighter"
+        }
+    ]
+}

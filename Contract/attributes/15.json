@@ -1,0 +1,19 @@
+{
+    "name": "Shenron",
+    "description": "The magical dragon summoned by the Dragon Balls, capable of granting three wishes.",
+    "image": "https://ipfs.io/ipfs/bafybeihrhczjcvv4kycqyta4k7i7zsebtr26qtrwuf6xchyajvdrj7mdba/Shenron.webp",
+    "attributes": [
+        {
+            "trait_type": "Race",
+            "value": "Dragon"
+        },
+        {
+            "trait_type": "Affiliation",
+            "value": "None"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Wish Granter"
+        }
+    ]
+}

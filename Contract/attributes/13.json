@@ -1,0 +1,19 @@
+{
+    "name": "Chi-Chi",
+    "description": "The wife of Goku and mother of Gohan and Goten, known for her fiery temper.",
+    "image": "https://ipfs.io/ipfs/bafybeihrhczjcvv4kycqyta4k7i7zsebtr26qtrwuf6xchyajvdrj7mdba/Chi%20Chi.webp",
+    "attributes": [
+        {
+            "trait_type": "Race",
+            "value": "Human"
+        },
+        {
+            "trait_type": "Affiliation",
+            "value": "None"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Support"
+        }
+    ]
+}

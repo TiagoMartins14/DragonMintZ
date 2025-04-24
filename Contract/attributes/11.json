@@ -1,0 +1,19 @@
+{
+    "name": "Majin Buu",
+    "description": "An ancient and powerful creature with various forms, known for his childlike personality and destructive power.",
+    "image": "https://ipfs.io/ipfs/bafybeihrhczjcvv4kycqyta4k7i7zsebtr26qtrwuf6xchyajvdrj7mdba/Majin%20Buu.webp",
+    "attributes": [
+        {
+            "trait_type": "Race",
+            "value": "Majin"
+        },
+        {
+            "trait_type": "Affiliation",
+            "value": "None"
+        },
+        {
+            "trait_type": "Role",
+            "value": "Villain"
+        }
+    ]
+}
