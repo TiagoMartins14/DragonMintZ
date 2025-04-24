@@ -58,18 +58,11 @@ contract DragonMintZTest is Test, ERC1155 {
         for (uint256 i = 0; i < 50000; i++) {
             vm.warp(block.timestamp + i);
 
-            address fakeSender = address(
-                uint160(uint256(keccak256(abi.encode(i))))
-            );
+            address fakeSender = address(uint160(uint256(keccak256(abi.encode(i)))));
             vm.prank(fakeSender);
 
-            uint256 generatedRandomCharacterId = dragonMintZ
-                .getRandomCharacterId();
-            assertGe(
-                generatedRandomCharacterId,
-                1,
-                "Random character ID should be greater than 0!"
-            );
+            uint256 generatedRandomCharacterId = dragonMintZ.getRandomCharacterId();
+            assertGe(generatedRandomCharacterId, 1, "Random character ID should be greater than 0!");
             assertLe(
                 generatedRandomCharacterId,
                 totalCharacters,
@@ -90,11 +83,7 @@ contract DragonMintZTest is Test, ERC1155 {
                 )
             );
 
-            assertEq(
-                dragonMintZ.getCharacterUri(i),
-                expectedUri,
-                "The uri isn't matching with its expectation!"
-            );
+            assertEq(dragonMintZ.getCharacterUri(i), expectedUri, "The uri isn't matching with its expectation!");
         }
 
         vm.expectRevert();
@@ -111,22 +100,13 @@ contract DragonMintZTest is Test, ERC1155 {
 
         vm.startPrank(msg.sender);
         for (uint256 i = oneStarBall; i <= sevenStarBall; i++) {
-            assertFalse(
-                dragonMintZ.hasAllDragonBalls(),
-                "The user does not have all the 7 Dragon Balls!"
-            );
+            assertFalse(dragonMintZ.hasAllDragonBalls(), "The user does not have all the 7 Dragon Balls!");
             dragonMintZ.mintForTest(msg.sender, i, 1);
         }
-        assertTrue(
-            dragonMintZ.hasAllDragonBalls(),
-            "The user does have all the 7 Dragon Balls!"
-        );
+        assertTrue(dragonMintZ.hasAllDragonBalls(), "The user does have all the 7 Dragon Balls!");
 
         dragonMintZ.mintForTest(msg.sender, shenron, 1);
-        assertFalse(
-            dragonMintZ.hasAllDragonBalls(),
-            "The user already has Shenron the token!"
-        );
+        assertFalse(dragonMintZ.hasAllDragonBalls(), "The user already has Shenron the token!");
         vm.stopPrank();
     }
 
@@ -140,15 +120,9 @@ contract DragonMintZTest is Test, ERC1155 {
             dragonMintZ.mintForTest(msg.sender, i, 1);
         }
 
-        assertTrue(
-            dragonMintZ.balanceOf(msg.sender, shenronId) == 0,
-            "The user does not have the Shenron token!"
-        );
+        assertTrue(dragonMintZ.balanceOf(msg.sender, shenronId) == 0, "The user does not have the Shenron token!");
         dragonMintZ.unleashShenron();
-        assertTrue(
-            dragonMintZ.balanceOf(msg.sender, shenronId) == 1,
-            "The user already has the Shenron token!"
-        );
+        assertTrue(dragonMintZ.balanceOf(msg.sender, shenronId) == 1, "The user already has the Shenron token!");
         vm.stopPrank();
     }
 }

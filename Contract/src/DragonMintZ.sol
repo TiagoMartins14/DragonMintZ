@@ -9,17 +9,9 @@ contract DragonMintZ is ERC1155 {
     uint256 public constant TOTAL_CHARACTERS = 22;
     string public baseURI;
 
-    constructor()
-        ERC1155(
-            "https://ipfs.io/ipfs/bafybeidemxyt6qodhhpimsx7jjne2cilnpdu5zieed3ntnhhwspk3arid4/"
-        )
-    {}
+    constructor() ERC1155("https://ipfs.io/ipfs/bafybeidemxyt6qodhhpimsx7jjne2cilnpdu5zieed3ntnhhwspk3arid4/") {}
 
-    event CharacterMinted(
-        address indexed user,
-        uint256 characterId,
-        string uri
-    );
+    event CharacterMinted(address indexed user, uint256 characterId, string uri);
 
     /// Mints a random DBZ character NFT to the caller
     function mintRandomCharacter() public {
@@ -35,31 +27,14 @@ contract DragonMintZ is ERC1155 {
     // Helper function to get a random character
     function getRandomCharacterId() public view returns (uint256) {
         return
-            (uint256(
-                keccak256(
-                    abi.encodePacked(
-                        block.timestamp,
-                        msg.sender,
-                        block.prevrandao
-                    )
-                )
-            ) % TOTAL_CHARACTERS) + 1;
+            (uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender, block.prevrandao))) % TOTAL_CHARACTERS) + 1;
     }
 
     // Returns full URI for token metadata
-    function getCharacterUri(
-        uint256 tokenId
-    ) public view returns (string memory) {
+    function getCharacterUri(uint256 tokenId) public view returns (string memory) {
         require(tokenId <= TOTAL_CHARACTERS, "Invalid character ID");
         require(tokenId > 0, "Invalid character ID");
-        return
-            string(
-                abi.encodePacked(
-                    uri(tokenId),
-                    Strings.toString(tokenId),
-                    ".json"
-                )
-            );
+        return string(abi.encodePacked(uri(tokenId), Strings.toString(tokenId), ".json"));
     }
 
     // Checks if the caller has all 7 Dragon Balls
