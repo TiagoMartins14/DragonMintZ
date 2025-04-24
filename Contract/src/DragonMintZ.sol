@@ -23,8 +23,8 @@ contract DragonMintZ is ERC1155 {
 
     // Helper function to get a random character
     function getRandomCharacterId() public view returns (uint256) {
-        uint256 getRandomCharacter =
-            uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender, block.prevrandao))) % (TOTAL_CHARACTERS - 1) + 1;
+        uint256 getRandomCharacter = uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender, block.prevrandao)))
+            % (TOTAL_CHARACTERS - 1) + 1;
         if (getRandomCharacter == 15) {
             getRandomCharacter = 22;
         }
@@ -42,7 +42,7 @@ contract DragonMintZ is ERC1155 {
         uint256 sevenStarBall = 22;
         uint256 shenron = 15;
         bool hasSevenDragonBalls = false;
-        
+
         if (balanceOf(msg.sender, shenron) > 0) {
             return false;
         }
