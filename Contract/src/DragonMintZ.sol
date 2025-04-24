@@ -42,14 +42,13 @@ contract DragonMintZ is ERC1155 {
         uint256 sevenStarBall = 22;
         uint256 shenron = 15;
         bool hasSevenDragonBalls = false;
-        uint256 balanceOfSender = balanceOf(msg.sender, shenron);
-
-        if (balanceOfSender > 0) {
+        
+        if (balanceOf(msg.sender, shenron) > 0) {
             return false;
         }
 
         for (uint256 i = oneStarBall; i <= sevenStarBall; i++) {
-            if (balanceOfSender > 0) {
+            if (balanceOf(msg.sender, i) > 0) {
                 hasSevenDragonBalls = true;
             } else {
                 hasSevenDragonBalls = false;
