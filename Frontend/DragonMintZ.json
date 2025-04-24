@@ -1,13 +1,7 @@
 [
     {
         "type": "constructor",
-        "inputs": [
-            {
-                "name": "_baseURI",
-                "type": "string",
-                "internalType": "string"
-            }
-        ],
+        "inputs": [],
         "stateMutability": "nonpayable"
     },
     {
@@ -73,20 +67,7 @@
     },
     {
         "type": "function",
-        "name": "baseURI",
-        "inputs": [],
-        "outputs": [
-            {
-                "name": "",
-                "type": "string",
-                "internalType": "string"
-            }
-        ],
-        "stateMutability": "view"
-    },
-    {
-        "type": "function",
-        "name": "getBalanceOfToken",
+        "name": "getCharacterUri",
         "inputs": [
             {
                 "name": "tokenId",
@@ -97,8 +78,8 @@
         "outputs": [
             {
                 "name": "",
-                "type": "uint256",
-                "internalType": "uint256"
+                "type": "string",
+                "internalType": "string"
             }
         ],
         "stateMutability": "view"
@@ -275,7 +256,7 @@
         "name": "uri",
         "inputs": [
             {
-                "name": "tokenId",
+                "name": "",
                 "type": "uint256",
                 "internalType": "uint256"
             }
