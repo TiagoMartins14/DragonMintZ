@@ -7,7 +7,6 @@ import {console} from "forge-std/Script.sol";
 
 contract DragonMintZ is ERC1155 {
     uint256 public constant TOTAL_CHARACTERS = 22;
-    string public baseURI;
 
     constructor() ERC1155("https://ipfs.io/ipfs/bafybeidemxyt6qodhhpimsx7jjne2cilnpdu5zieed3ntnhhwspk3arid4/") {}
 
@@ -15,10 +14,8 @@ contract DragonMintZ is ERC1155 {
 
     /// Mints a random DBZ character NFT to the caller
     function mintRandomCharacter() public {
-        uint256 characterId = 15;
-        while (characterId == 15) {
-            characterId = getRandomCharacterId();
-        }
+        uint256 characterId = getRandomCharacterId();
+
         _mint(msg.sender, characterId, 1, "");
         string memory characterURI = getCharacterUri(characterId);
         emit CharacterMinted(msg.sender, characterId, characterURI);
@@ -26,14 +23,16 @@ contract DragonMintZ is ERC1155 {
 
     // Helper function to get a random character
     function getRandomCharacterId() public view returns (uint256) {
-        return
-            (uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender, block.prevrandao))) % TOTAL_CHARACTERS) + 1;
+        uint256 getRandomCharacter =
+            uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender, block.prevrandao))) % (TOTAL_CHARACTERS - 1) + 1;
+        if (getRandomCharacter == 15) {
+            getRandomCharacter = 22;
+        }
+        return getRandomCharacter;
     }
 
     // Returns full URI for token metadata
     function getCharacterUri(uint256 tokenId) public view returns (string memory) {
-        require(tokenId <= TOTAL_CHARACTERS, "Invalid character ID");
-        require(tokenId > 0, "Invalid character ID");
         return string(abi.encodePacked(uri(tokenId), Strings.toString(tokenId), ".json"));
     }
 
@@ -43,13 +42,14 @@ contract DragonMintZ is ERC1155 {
         uint256 sevenStarBall = 22;
         uint256 shenron = 15;
         bool hasSevenDragonBalls = false;
+        uint256 balanceOfSender = balanceOf(msg.sender, shenron);
 
-        if (balanceOf(msg.sender, shenron) > 0) {
+        if (balanceOfSender > 0) {
             return false;
         }
 
         for (uint256 i = oneStarBall; i <= sevenStarBall; i++) {
-            if (balanceOf(msg.sender, i) > 0) {
+            if (balanceOfSender > 0) {
                 hasSevenDragonBalls = true;
             } else {
                 hasSevenDragonBalls = false;
