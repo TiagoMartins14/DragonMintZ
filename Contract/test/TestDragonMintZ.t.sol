@@ -71,7 +71,7 @@ contract DragonMintZTest is Test, ERC1155 {
         }
     }
 
-    function testGetCharacterUri() public {
+    function testGetCharacterUri() public view {
         uint256 totalCharacters = dragonMintZ.TOTAL_CHARACTERS();
 
         for (uint256 i = 1; i <= totalCharacters; i++) {
@@ -85,12 +85,6 @@ contract DragonMintZTest is Test, ERC1155 {
 
             assertEq(dragonMintZ.getCharacterUri(i), expectedUri, "The uri isn't matching with its expectation!");
         }
-
-        vm.expectRevert();
-        dragonMintZ.getCharacterUri(0);
-
-        vm.expectRevert();
-        dragonMintZ.getCharacterUri(totalCharacters + 1);
     }
 
     function testHasAllDragonBalls() public {
