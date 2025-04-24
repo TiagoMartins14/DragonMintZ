@@ -10,11 +10,13 @@ env:
 
 jobs:
   check:
-    strategy:
-      fail-fast: true
-
     name: Foundry project
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: Contract
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,21 +26,16 @@ jobs:
         uses: foundry-rs/foundry-toolchain@v1
 
       - name: Show Forge version
-        run: |
-          forge --version
+        run: forge --version
 
       - name: Run Forge fmt
-        run: |
-          forge fmt --check
+        run: forge fmt --check
         id: fmt
 
       - name: Run Forge build
-        run: |
-          forge build --sizes
+        run: forge build --sizes
         id: build
 
       - name: Run Forge tests
-        run: |
-          cd Contract
-          forge test -vvv
+        run: forge test -vvv
         id: test
