@@ -3,7 +3,7 @@ import { ethers } from 'https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.es
 let contract;
 let signer;
 
-const CONTRACT_ADDRESS = "0x6F12aed73C96b8Ff5b53278ec7Ad9e8F844fe4ab"; // Replace with contract address
+const CONTRACT_ADDRESS = "0x02bCd106699ab1a64B5fF0ac4BDAf91553e1B0fc";
 const ABI_PATH = "./DragonMintZ.json";
 
 function convertIpfsToHttp(ipfsUrl) {
@@ -38,7 +38,6 @@ async function displayCharacterDetails(metadataUri, characterId, skipAppend = fa
         attrContainer.appendChild(attrBox);
     });
 
-    // Fetch and display balance
     const balance = await contract.getBalanceOfToken(characterId);
     const balanceBox = document.createElement("div");
     balanceBox.className = "attribute";
@@ -52,11 +51,11 @@ async function displayCharacterDetails(metadataUri, characterId, skipAppend = fa
 
     if (!skipAppend) {
         const displayArea = document.getElementById("characterDisplay");
-        displayArea.innerHTML = ""; // Clear previous
+        displayArea.innerHTML = "";
         displayArea.appendChild(card);
     }
 
-    return card; // Return the card element
+    return card;
 }
 
 
@@ -69,69 +68,101 @@ window.onload = async () => {
             alert("MetaMask is required!");
             return;
         }
-
+    
         try {
+            await window.ethereum.request({
+                method: 'wallet_switchEthereumChain',
+                params: [{ chainId: '0xaa36a7' }],
+            });
+    
             const provider = new ethers.providers.Web3Provider(window.ethereum);
+    
+            const network = await provider.getNetwork();
+            if (network.chainId !== 11155111) { // 11155111 = Sepolia
+                alert("Please switch to the Sepolia network in MetaMask.");
+                return;
+            }
+    
             await provider.send("eth_requestAccounts", []);
             signer = await provider.getSigner();
+    
             const res = await fetch(ABI_PATH);
             const abi = await res.json();
-
             contract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
-
+    
             document.getElementById("status").textContent = `Wallet connected: ${await signer.getAddress()}`;
             mintBtn.disabled = false;
-
+    
         } catch (err) {
             console.error(err);
-            alert("Wallet connection failed");
+            alert("Wallet connection failed or network switch rejected");
         }
     };
+    
 
     mintBtn.onclick = async () => {
         try {
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const network = await provider.getNetwork();
+    
+            if (network.chainId !== 11155111) {
+                try {
+                    await window.ethereum.request({
+                        method: 'wallet_switchEthereumChain',
+                        params: [{ chainId: '0xaa36a7' }], // 0xaa36a7 = Sepolia
+                    });
+    
+                    // Refresh provider after chain switch
+                    const newProvider = new ethers.providers.Web3Provider(window.ethereum);
+                    signer = newProvider.getSigner();
+                    contract = contract.connect(signer);
+                } catch (switchErr) {
+                    console.error("User rejected network switch or switch failed", switchErr);
+                    alert("Please switch to the Sepolia network to mint.");
+                    return;
+                }
+            }
+    
             document.getElementById("status").textContent = "Minting...";
             const tx = await contract.mintRandomCharacter();
             const receipt = await tx.wait();
-
+    
             const event = receipt.events?.find(e => e.event === "CharacterMinted");
             if (!event) throw new Error("CharacterMinted event not found");
-
+    
             const [user, characterId, uri] = event.args;
-
+    
             document.getElementById("status").textContent = `Minted successfully!`;
             await displayCharacterDetails(uri, characterId);
-
-            // Check for all Dragon Balls
+    
             const hasAll = await contract.hasAllDragonBalls();
             if (hasAll) {
                 document.getElementById("status").textContent += " All Dragon Balls collected! Summoning Shenron...";
-
+    
                 const shenronTx = await contract.unleashShenron();
                 const shenronReceipt = await shenronTx.wait();
                 const shenronEvent = shenronReceipt.events?.find(e => e.event === "CharacterMinted");
+    
                 if (shenronEvent) {
                     const [_, shenronId, shenronUri] = shenronEvent.args;
-
+    
                     const shenronContainer = document.createElement("div");
                     shenronContainer.className = "shenron-glow";
-
-                    const shenronCard = await displayCharacterDetails(shenronUri, shenronId, true); // don't auto-append
-
+    
+                    const shenronCard = await displayCharacterDetails(shenronUri, shenronId, true);
                     shenronContainer.appendChild(shenronCard);
                     document.getElementById("characterDisplay").appendChild(shenronContainer);
-
+    
                     document.getElementById("status").textContent += " Shenron has appeared!";
                 }
-
-
             }
-
+    
         } catch (err) {
             console.error(err);
             document.getElementById("status").textContent = "Mint failed!";
         }
     };
+    
 
 
 };
