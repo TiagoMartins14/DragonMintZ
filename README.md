@@ -3,7 +3,7 @@
 <p align="center">https://dragonmintz.netlify.app</p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/51d190c3-8251-4dfa-b2fc-9b267a0d987e" alt="banner" />
+  <img src="https://github.com/user-attachments/assets/b5aa274f-1637-456f-a76c-4a9d3a073cd7" alt="banner" />
 </p>
 
 
