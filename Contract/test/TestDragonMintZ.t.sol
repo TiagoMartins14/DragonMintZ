@@ -62,11 +62,11 @@ contract DragonMintZTest is Test, ERC1155 {
             vm.prank(fakeSender);
 
             uint256 generatedRandomCharacterId = dragonMintZ.getRandomCharacterId();
-            assertGe(generatedRandomCharacterId, 1, "Random character ID should be greater than 0!");
+            assertGe(generatedRandomCharacterId, 1, "Random character ID has to be greater than 0!");
             assertLe(
                 generatedRandomCharacterId,
                 totalCharacters,
-                "Random character ID should be smaller than TOTAL_CHARACTERS!"
+                "Random character ID has to be equal or smaller than TOTAL_CHARACTERS!"
             );
         }
     }
