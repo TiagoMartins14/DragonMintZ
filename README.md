@@ -1,20 +1,59 @@
-# DragonMintZ
-A project about a minting Dragon Ball Z characters/items in a roulette type way
+# <div align="center">🐉 DragonMintZ</div>
+<p align="center">A roulette-style NFT minting dApp where Dragon Ball Z fans can collect characters and items — and summon Shenron.</p>
+<p align="center">https://dragonmintz.netlify.app</p>
 
-## 🧠 "Randomness":
-This contract generates a "random" character ID like this:
+![banner](https://github.com/user-attachments/assets/51d190c3-8251-4dfa-b2fc-9b267a0d987e)
 
-1. Combine the current timestamp, caller address, and randomness from the previous block.
+## 🔍 Overview
 
-2. Hash that data to get a number that appears random.
+DragonMintZ is a Web3 application built for fans of the Dragon Ball Z universe. The app lets users mint NFT representations of legendary DBZ characters and the iconic 7 Dragon Balls using a random minting mechanism powered by the Ethereum Virtual Machine (EVM). But there’s a twist — collecting all Dragon Balls gives the user a one-time opportunity to summon Shenron.
 
-3. Reduce it to the valid character ID range using modulus.
+The project utilizes:
+- **React** for the frontend UI
+- **Wagmi** + **RainbowKit** for EVM wallet connection
+- **Foundry** for contract development
+- **ERC1155** for flexible token standard
+- **IPFS (via Pinata)** to host character metadata and images
 
-## ⚠️ Important Note on Security:
-This kind of randomness is not secure for high-stakes randomness (e.g., lotteries or games with real value), because miners or other actors might influence block.timestamp or predict msg.sender. For secure randomness, you'd want something like Chainlink VRF.
+## 🧱 Token Breakdown
 
-Pre-requesite: docker
+- 🎴 **15 Character Tokens** – Each minted randomly.
+- 🟠 **7 Dragon Balls** – Collectible, and key to unlocking Shenron.
+- 🐉 **Shenron Token** – A special NFT that becomes available only when the user holds **all 7 Dragon Balls**.
 
-clone project
+> Shenron can only be minted once **per wallet** and only the **first time** all Dragon Balls are collected.
 
-inside the project folder run: make
+![Image](https://github.com/user-attachments/assets/8757ca32-88f9-4d6e-b2e8-1a634d1296c8)
+
+## 🎲 Randomness Mechanism
+
+The character or item minted is determined by a pseudo-random algorithm:
+
+1. Concatenates the caller’s address, the current timestamp, and previous block hash.
+2. Applies a keccak256 hash to the data.
+3. Reduces the result using modulus to fit the available token ID range.
+
+> ⚠️ This randomness is **not cryptographically secure**. It’s sufficient for fun minting, but susceptible to manipulation in high-stakes settings. For real randomness, services like Chainlink VRF are recommended.
+
+## 🧪 Contracts & Deployment
+
+The smart contracts follow the **ERC1155** standard for multi-token minting. Shenron logic is implemented via internal state checks during minting.
+
+> Contracts deployed to Avalanche Fuji Testnet
+> Metadata and token art stored on IPFS via [Pinata](https://pinata.cloud)
+
+## 🚀 Getting Started
+
+### 🧰 Prerequisites
+
+To build and run the app locally:
+- [Git](https://git-scm.com/)
+- [Docker](https://www.docker.com/)
+- [Make](https://www.gnu.org/software/make/)
+
+### 🔧 Installation
+
+```bash
+git clone https://github.com/TiagoMartins14/DragonMintZ.git
+cd dragonmintz
+make
