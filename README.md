@@ -2,7 +2,10 @@
 <p align="center">A roulette-style NFT minting dApp where Dragon Ball Z fans can collect characters and items — and summon Shenron.</p>
 <p align="center">https://dragonmintz.netlify.app</p>
 
-<p align="center">![banner](https://github.com/user-attachments/assets/51d190c3-8251-4dfa-b2fc-9b267a0d987e)</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/51d190c3-8251-4dfa-b2fc-9b267a0d987e" alt="banner" />
+</p>
+
 
 ## 🔍 Overview
 
