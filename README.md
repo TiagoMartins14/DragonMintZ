@@ -58,3 +58,28 @@ To build and run the app locally:
 git clone https://github.com/TiagoMartins14/DragonMintZ.git
 cd DragonMintZ
 make
+```
+
+https://localhost:3000
+
+## Tips & Testing
+
+### Interacting with the Docker Container
+
+You can interact with the container on a separate terminal window via:
+
+```bash
+docker exec -it dragonmintz bash
+```
+
+### Running Smart Contract Tests
+
+Navigate to the contract directory and run Foundry tests:docker exec -it dragonmintz 
+```
+cd Contract
+forge test
+```
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9aa37ef4-c90d-459e-b260-7e06629e9754" alt="banner" />
+</p>
