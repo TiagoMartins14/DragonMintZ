@@ -40,12 +40,7 @@ contract DragonMintZ is ERC1155 {
     function hasAllDragonBalls() public view returns (bool) {
         uint256 oneStarBall = 16;
         uint256 sevenStarBall = 22;
-        uint256 shenron = 15;
         bool hasSevenDragonBalls = false;
-
-        if (balanceOf(msg.sender, shenron) > 0) {
-            return false;
-        }
 
         for (uint256 i = oneStarBall; i <= sevenStarBall; i++) {
             if (balanceOf(msg.sender, i) > 0) {
@@ -62,6 +57,8 @@ contract DragonMintZ is ERC1155 {
     function unleashShenron() public {
         uint256 shenronId = 15;
 
+        require(balanceOf(msg.sender, shenronId) < 1, "You already summoned Shenron!");
+        require(hasAllDragonBalls(), "You need to have all 7 Dragon Balls to summon Shenron.");
         _mint(msg.sender, shenronId, 1, "");
         string memory characterURI = uri(shenronId);
         emit CharacterMinted(msg.sender, shenronId, characterURI);
