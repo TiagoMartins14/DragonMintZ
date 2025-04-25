@@ -108,15 +108,15 @@ contract DragonMintZTest is Test, ERC1155 {
         vm.startPrank(msg.sender);
         vm.expectRevert();
         dragonMintZ.unleashShenron();
-        
+
         for (uint256 i = oneStarBall; i <= sevenStarBall; i++) {
             dragonMintZ.mintForTest(msg.sender, i, 1);
         }
         assertTrue(dragonMintZ.balanceOf(msg.sender, shenronId) == 0, "The user does not have the Shenron token!");
-        
+
         dragonMintZ.unleashShenron();
         assertTrue(dragonMintZ.balanceOf(msg.sender, shenronId) == 1, "The user already has the Shenron token!");
-        
+
         vm.expectRevert();
         dragonMintZ.unleashShenron();
         vm.stopPrank();
