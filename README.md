@@ -83,3 +83,8 @@ forge test
 <p align="center">
   <img src="https://github.com/user-attachments/assets/ff1b47eb-05ba-4630-8edd-8708ba5365a7" alt="banner" />
 </p>
+
+## Upcoming Features
+
+- Display a list of NFTs minted by the user
+- Enable trading functionality between user accounts
