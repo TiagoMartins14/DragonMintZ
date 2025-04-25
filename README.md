@@ -40,7 +40,7 @@ The character or item minted is determined by a pseudo-random algorithm:
 
 The smart contracts follow the **ERC1155** standard for multi-token minting (Shenron logic is implemented via internal state checks during minting).
 
-> Contract deployed to Sepolia Testnet [Address](https://sepolia.etherscan.io/address/0xd9784fb0e5ca54ed885115641ac7f52586be48d5)
+> Contract deployed to Sepolia Testnet [Address](https://sepolia.etherscan.io/address/0x7229199956087715Bd5E355Ab4783b60dd11f651)
 > 
 > Metadata and token art stored on IPFS via [Pinata](https://pinata.cloud)
 
