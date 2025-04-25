@@ -60,7 +60,7 @@ cd DragonMintZ
 make
 ```
 
-https://localhost:3000
+Once done, open your browser and navigate to https://localhost:3000 to access the app.
 
 ## Tips & Testing
 
