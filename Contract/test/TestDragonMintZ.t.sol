@@ -90,7 +90,6 @@ contract DragonMintZTest is Test, ERC1155 {
     function testHasAllDragonBalls() public {
         uint256 oneStarBall = 16;
         uint256 sevenStarBall = 22;
-        uint256 shenron = 15;
 
         vm.startPrank(msg.sender);
         for (uint256 i = oneStarBall; i <= sevenStarBall; i++) {
@@ -98,9 +97,6 @@ contract DragonMintZTest is Test, ERC1155 {
             dragonMintZ.mintForTest(msg.sender, i, 1);
         }
         assertTrue(dragonMintZ.hasAllDragonBalls(), "The user does have all the 7 Dragon Balls!");
-
-        dragonMintZ.mintForTest(msg.sender, shenron, 1);
-        assertFalse(dragonMintZ.hasAllDragonBalls(), "The user already has Shenron the token!");
         vm.stopPrank();
     }
 
@@ -110,13 +106,19 @@ contract DragonMintZTest is Test, ERC1155 {
         uint256 shenronId = 15;
 
         vm.startPrank(msg.sender);
+        vm.expectRevert();
+        dragonMintZ.unleashShenron();
+        
         for (uint256 i = oneStarBall; i <= sevenStarBall; i++) {
             dragonMintZ.mintForTest(msg.sender, i, 1);
         }
-
         assertTrue(dragonMintZ.balanceOf(msg.sender, shenronId) == 0, "The user does not have the Shenron token!");
+        
         dragonMintZ.unleashShenron();
         assertTrue(dragonMintZ.balanceOf(msg.sender, shenronId) == 1, "The user already has the Shenron token!");
+        
+        vm.expectRevert();
+        dragonMintZ.unleashShenron();
         vm.stopPrank();
     }
 }
