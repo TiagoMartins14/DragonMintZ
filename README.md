@@ -68,15 +68,14 @@ Once done, open your browser and navigate to https://localhost:3000 to access th
 ### Interacting with the Docker Container
 
 You can interact with the container on a separate terminal window via:
-
 ```bash
 docker exec -it dragonmintz bash
 ```
 
 ### Running Smart Contract Tests
 
-Navigate to the contract directory and run Foundry tests:docker exec -it dragonmintz 
-```
+Navigate to the contract directory and run:
+```bash
 cd Contract
 forge test
 ```
