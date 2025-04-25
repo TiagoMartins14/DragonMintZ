@@ -26,7 +26,7 @@ The project utilizes:
 
 ![Image](https://github.com/user-attachments/assets/8757ca32-88f9-4d6e-b2e8-1a634d1296c8)
 
-## 🎲 Randomness Mechanism
+## Randomness Mechanism
 
 The character or item minted is determined by a pseudo-random algorithm:
 
