@@ -12,9 +12,20 @@
 DragonMintZ is a Web3 application that lets users mint NFT representations of legendary DBZ characters and the iconic 7 Dragon Balls using a random minting mechanism powered by the Ethereum Virtual Machine (EVM).
 
 The project utilizes:
-- **Foundry** for contract development
+- **Foundry** for contract development, testing, and deployment
 - **ERC1155** for flexible token standard
-- **IPFS (via Pinata)** to host character metadata and images
+- **IPFS (via Pinata)** for hosting token metadata and images
+
+## Design Decisions
+
+- **Why ERC1155?**  
+  ERC1155 was chosen over ERC721 to allow multiple instances of the same token. This means that users can mint and own the same DBZ character or Dragon Ball token without each instance being entirely unique. It’s ideal for collectible-based applications where token types are limited but quantity is not.
+
+- **Efficient IPFS Structure**  
+  All token metadata JSON files and associated images are pinned under a single IPFS CID. This makes it possible to construct token URIs by simply swapping the filename at the end of a common base URL. This approach reduces complexity in both the smart contract and frontend logic, while also improving maintainability.
+
+- **Conditional Minting for Special Token**  
+  A special token—**Shenron**—can only be minted by users who meet a specific condition: owning all **7 Dragon Ball tokens**. To enforce this, the minting function includes strict `require` statements that verify ownership before allowing the mint. This prevents users from bypassing the intended gameplay logic and ensures that Shenron remains a true achievement-based reward.
 
 ## Token Breakdown
 
