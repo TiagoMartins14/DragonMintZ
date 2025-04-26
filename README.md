@@ -16,7 +16,7 @@ The project utilizes:
 - **ERC1155** for flexible token standard
 - **IPFS (via Pinata)** for hosting token metadata and images
 
-## Design Decisions
+## Technical Decisions
 
 - **Why ERC1155?**  
   ERC1155 was chosen over ERC721 to allow multiple instances of the same token. This means that users can mint and own the same DBZ character or Dragon Ball token without each instance being entirely unique. It’s ideal for collectible-based applications where token types are limited but quantity is not.
