@@ -13,7 +13,7 @@ contract DragonMintZ is ERC1155 {
     uint256 private constant ONE_STAR_BALL = 16;
     uint256 private constant SEVEN_STAR_BALL = 22;
     uint256 private constant SHENRON_ID = 15;
-    
+
     /*//////////////////////////////////////////////////////////////
                                  EVENTS
     //////////////////////////////////////////////////////////////*/
@@ -25,7 +25,9 @@ contract DragonMintZ is ERC1155 {
     constructor() ERC1155("https://ipfs.io/ipfs/bafybeidemxyt6qodhhpimsx7jjne2cilnpdu5zieed3ntnhhwspk3arid4/") {}
 
 
-    /// Mints a random DBZ character NFT to the caller
+    /**
+     * @notice Mints a random DBZ character NFT to the caller.
+     */
     function mintRandomCharacter() public {
         uint256 characterId = getRandomCharacterId();
 
@@ -34,7 +36,11 @@ contract DragonMintZ is ERC1155 {
         emit CharacterMinted(msg.sender, characterId, characterURI);
     }
 
-    // Helper function to get a random character
+    /**
+     * @notice Helper function to get a random character.
+     * @dev Shenron is a special character that cannot be minted this way. The user only gets the option to mint it the moment they collect all the 7 Dragon Balls tokens.
+     * @return A random character.
+     */
     function getRandomCharacterId() public view returns (uint256) {
         uint256 getRandomCharacter = uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender, block.prevrandao)))
             % (TOTAL_CHARACTERS - 1) + 1;
@@ -44,12 +50,19 @@ contract DragonMintZ is ERC1155 {
         return getRandomCharacter;
     }
 
-    // Returns full URI for token metadata
+    /**
+     * @notice Gets full URI for token metadata.
+     * @param tokenId The token id to get the URI from.
+     * @return Full URI for token metadata.
+     */
     function getCharacterUri(uint256 tokenId) public view returns (string memory) {
         return string(abi.encodePacked(uri(tokenId), Strings.toString(tokenId), ".json"));
     }
 
-    // Checks if the caller has all 7 Dragon Balls
+    /**
+     * @notice Checks if the caller has all 7 Dragon Balls tokens (16, 17, 18, 19 ,20, 21, 22).
+     * @return True if it has all 7 Dragon Balls tokens.
+     */
     function hasAllDragonBalls() public view returns (bool) {
         bool hasSevenDragonBalls = false;
 
@@ -64,8 +77,11 @@ contract DragonMintZ is ERC1155 {
         return hasSevenDragonBalls;
     }
 
-    // Mints Shenron token
-    function unleashShenron() public {
+    /**
+     * @notice Mints Shenron token (15)
+     * @dev The user can only mint the Shenron token the moment he/she collects all 7 dragon balls. If he doesn't accept to mint it, each time another Dragon Ball is collected, the option to mint the Shenron token is presented again to the user.
+     */
+    function unleashShenron() private {
         require(balanceOf(msg.sender, SHENRON_ID) < 1, "You already summoned Shenron!");
         require(hasAllDragonBalls(), "You need to have all 7 Dragon Balls to summon Shenron.");
         _mint(msg.sender, SHENRON_ID, 1, "");
