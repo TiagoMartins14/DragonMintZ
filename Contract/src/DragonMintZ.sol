@@ -6,11 +6,24 @@ import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 import {console} from "forge-std/Script.sol";
 
 contract DragonMintZ is ERC1155 {
-    uint256 public constant TOTAL_CHARACTERS = 22;
+    /*//////////////////////////////////////////////////////////////
+                            STATE VARIABLES
+    //////////////////////////////////////////////////////////////*/
+    uint256 private constant TOTAL_CHARACTERS = 22;
+    uint256 private constant ONE_STAR_BALL = 16;
+    uint256 private constant SEVEN_STAR_BALL = 22;
+    uint256 private constant SHENRON_ID = 15;
+    
+    /*//////////////////////////////////////////////////////////////
+                                 EVENTS
+    //////////////////////////////////////////////////////////////*/
+    event CharacterMinted(address indexed user, uint256 characterId, string uri);
 
+    /*//////////////////////////////////////////////////////////////
+                               FUNCTIONS
+    //////////////////////////////////////////////////////////////*/
     constructor() ERC1155("https://ipfs.io/ipfs/bafybeidemxyt6qodhhpimsx7jjne2cilnpdu5zieed3ntnhhwspk3arid4/") {}
 
-    event CharacterMinted(address indexed user, uint256 characterId, string uri);
 
     /// Mints a random DBZ character NFT to the caller
     function mintRandomCharacter() public {
@@ -38,11 +51,9 @@ contract DragonMintZ is ERC1155 {
 
     // Checks if the caller has all 7 Dragon Balls
     function hasAllDragonBalls() public view returns (bool) {
-        uint256 oneStarBall = 16;
-        uint256 sevenStarBall = 22;
         bool hasSevenDragonBalls = false;
 
-        for (uint256 i = oneStarBall; i <= sevenStarBall; i++) {
+        for (uint256 i = ONE_STAR_BALL; i <= SEVEN_STAR_BALL; i++) {
             if (balanceOf(msg.sender, i) > 0) {
                 hasSevenDragonBalls = true;
             } else {
@@ -55,12 +66,10 @@ contract DragonMintZ is ERC1155 {
 
     // Mints Shenron token
     function unleashShenron() public {
-        uint256 shenronId = 15;
-
-        require(balanceOf(msg.sender, shenronId) < 1, "You already summoned Shenron!");
+        require(balanceOf(msg.sender, SHENRON_ID) < 1, "You already summoned Shenron!");
         require(hasAllDragonBalls(), "You need to have all 7 Dragon Balls to summon Shenron.");
-        _mint(msg.sender, shenronId, 1, "");
-        string memory characterURI = uri(shenronId);
-        emit CharacterMinted(msg.sender, shenronId, characterURI);
+        _mint(msg.sender, SHENRON_ID, 1, "");
+        string memory characterURI = uri(SHENRON_ID);
+        emit CharacterMinted(msg.sender, SHENRON_ID, characterURI);
     }
 }
