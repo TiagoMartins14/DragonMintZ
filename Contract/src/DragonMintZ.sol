@@ -9,7 +9,7 @@ contract DragonMintZ is ERC1155 {
     /*//////////////////////////////////////////////////////////////
                             STATE VARIABLES
     //////////////////////////////////////////////////////////////*/
-    uint256 private constant TOTAL_CHARACTERS = 22;
+    uint256 public constant TOTAL_CHARACTERS = 22;
     uint256 private constant ONE_STAR_BALL = 16;
     uint256 private constant SEVEN_STAR_BALL = 22;
     uint256 private constant SHENRON_ID = 15;
@@ -80,7 +80,7 @@ contract DragonMintZ is ERC1155 {
      * @notice Mints Shenron token (15)
      * @dev The user can only mint the Shenron token the moment he/she collects all 7 dragon balls. If he doesn't accept to mint it, each time another Dragon Ball is collected, the option to mint the Shenron token is presented again to the user.
      */
-    function unleashShenron() private {
+    function unleashShenron() public {
         require(balanceOf(msg.sender, SHENRON_ID) < 1, "You already summoned Shenron!");
         require(hasAllDragonBalls(), "You need to have all 7 Dragon Balls to summon Shenron.");
         _mint(msg.sender, SHENRON_ID, 1, "");
