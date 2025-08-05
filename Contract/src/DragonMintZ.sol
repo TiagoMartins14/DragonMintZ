@@ -24,7 +24,6 @@ contract DragonMintZ is ERC1155 {
     //////////////////////////////////////////////////////////////*/
     constructor() ERC1155("https://ipfs.io/ipfs/bafybeidemxyt6qodhhpimsx7jjne2cilnpdu5zieed3ntnhhwspk3arid4/") {}
 
-
     /**
      * @notice Mints a random DBZ character NFT to the caller.
      */
